@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Ventana;
@@ -11,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author taniao
+ * @author ricky_000
  */
 public class GUI extends javax.swing.JFrame {
     Operaciones operaciones;
@@ -208,6 +209,9 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    /** 
+     * Método que limpia las cajas de texto después de cada acción.
+     */
     private void limpiar(){
         jTFId.setText("");
         jTFPrimerApellido.setText("");
@@ -215,6 +219,11 @@ public class GUI extends javax.swing.JFrame {
         jTFSegundoApellido.setText("");
         jTFSegundoNombre.setText("");
     }
+    
+    /**
+     * Botón que guarda el usuario en el objeto "persona" y en la "bd".
+     * @param evt 
+     */
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         try{
             int id = Integer.parseInt(jTFId.getText());
@@ -229,10 +238,18 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
+    /**
+     * Botón que llama al metodo para leer todas las personas de la base de datos.
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         operaciones.totalPersonas((DefaultTableModel)jTPersonas.getModel());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Botón que borra todos los nombres de historial
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         operaciones.insertar("delete from Persona");
         operaciones.totalPersonas((DefaultTableModel)jTPersonas.getModel());

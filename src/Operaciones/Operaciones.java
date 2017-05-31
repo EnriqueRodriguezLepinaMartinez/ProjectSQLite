@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,6 +6,7 @@
 package Operaciones;
 
 import Objeto.Persona;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -16,7 +17,11 @@ import javax.swing.table.DefaultTableModel;
  * @author ricky_000
  */
 public class Operaciones extends Conexion {
-
+/**
+ * Método que añade datos a la base de datos.
+ * @param sql
+ * @return 
+ */
     public boolean insertar(String sql) {
         boolean valor = true;
         conectar();
@@ -36,6 +41,11 @@ public class Operaciones extends Conexion {
         return valor;
     }
 
+    /**
+     * Método que lee la bd y devuelve el resultado.
+     * @param sql
+     * @return 
+     */
     public ResultSet consultar(String sql) {
         conectar();
         ResultSet resultado = null;
@@ -50,6 +60,10 @@ public class Operaciones extends Conexion {
         return resultado;
     }
 
+    /**
+     * Método para guardar el usuario.
+     * @param persona 
+     */
     public void guardarUsuario(Persona persona) {
         insertar("insert into Persona values(" + persona.getId()
                 + ",'" + persona.getPrimer_nombre()
@@ -90,5 +104,11 @@ public class Operaciones extends Conexion {
                 ex.printStackTrace();
             }
         }
+    }
+    
+    public void eliminar(String idsql) throws SQLException{
+        String query ="DELETE FROM REGISTRO WHERE id = "+idsql;
+        PreparedStatement rs = conexion.prepareStatement(query);
+        rs.execute();
     }
 }
